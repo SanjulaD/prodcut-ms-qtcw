@@ -10,18 +10,13 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    login.cpp
 
 HEADERS += \
-    mainwindow.h
+    login.h
 
 FORMS += \
-    mainwindow.ui
-
-TRANSLATIONS += \
-    product_management_system_en_US.ts
-CONFIG += lrelease
-CONFIG += embed_translations
+    login.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
