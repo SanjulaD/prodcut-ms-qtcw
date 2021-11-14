@@ -6,7 +6,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QFile file(":/new/qss/qss/Devsion.qss");
+    QFile file(":/qss/qss/Devsion.qss");
     file.open(QFile::ReadOnly);
 
     QString styleSheet { QLatin1String(file.readAll()) };

@@ -60,8 +60,7 @@ QPushButton::hover
 	border-style: solid;
 	border-color: #000000;
 	font-weight : bold;
-	padding: 13px;
-        cursor: pointer;
+        padding: 13px;
 }
 
 

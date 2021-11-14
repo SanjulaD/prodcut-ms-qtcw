@@ -1,5 +1,6 @@
 #include "login.h"
 #include "ui_login.h"
+#include "register.h"
 #include <QDir>
 #include <QDesktopWidget>
 #include <QTextStream>
@@ -23,20 +24,13 @@ Login::Login(QWidget *parent)
     ui -> userLineEdit -> setPlaceholderText("username");
     ui -> passwordLineEdit -> setPlaceholderText("password");
 
-    my_db = QSqlDatabase::addDatabase("QSQLITE");
-    QString dbPath = QDir::currentPath();
-    dbPath =  dbPath + QString("/database.db");
-    qDebug() << dbPath;
-    my_db.setDatabaseName(dbPath);
-    my_db.open();
-
-    if (!my_db.open())
+    if (!connOpen())
     {
         QTextStream(stdout) << "Connect Failed!";
     }
     else
     {
-        QTextStream(stdout) << "Connect OK!";
+        QTextStream(stdout) << "Login Connect OK!";
     }
 
 }
@@ -49,18 +43,30 @@ Login::~Login()
 
 void Login::on_loginButton_clicked()
 {
+    QString roleName;
+    QMessageBox msgBox;
+
     QString username, password;
 
-    username = ui -> userLineEdit -> text();
-    password = ui -> passwordLineEdit -> text();
+    username = ui -> userLineEdit -> text().trimmed();;
+    password = ui -> passwordLineEdit -> text().trimmed();
 
-    if (!my_db.isOpen()) {
-        qDebug() << "Error: connection with database fail";
+    if (username.isEmpty()) {
+        msgBox.warning(this, "Warning", "Username field cannot be empty");
+        return;
+     } else if (password.isEmpty()) {
+        msgBox.warning(this, "Warning", "Password field cannot be empty!");
+        return;
+     }
+
+    if (!connOpen()) {
+        QTextStream(stdout) << "Failed to open the database!";
         return;
     } else {
-        qDebug() << "Connected login";
+        QTextStream(stdout) << "Connect Database Success!";
     }
 
+    connOpen();
     QSqlQuery query;
 
     query.prepare(
@@ -74,26 +80,38 @@ void Login::on_loginButton_clicked()
     query.bindValue(":password", password);
 
     if (query.exec()) {
-        if(query.isActive()){
             int count = 0;
             while (query.next()) {
                 count++;
             }
             if (count == 1) {
-                ui -> label -> setText("username and password is correct");
+                if(query.first()) {
+                    roleName = query.value(8).toString();
+                    if (roleName == "admin") {
+                        msgBox.information(this, "Success", "admin success");
+                    }
+                    if (roleName == "user") {
+                        msgBox.information(this, "Success", "user success");
+                    }
+                }
+                connClose();
             }
             if (count > 1) {
-                ui -> label -> setText("Duplicate username and password");
+                msgBox.warning(this, "Warning", "Duplicate username and password");
             }
             if (count < 1) {
-                ui -> label -> setText("username and password not valid");
+                msgBox.warning(this, "Warning", "username and password not valid");
             }
-        } else {
-            qDebug() << query.lastError();
-        }
     } else {
-        ui->label->setText("Not working query");
         qDebug() << query.lastError();
     }
+}
+
+void Login::on_register_page_clicked()
+{
+    Register *r = new Register(this);
+    r->setModal(true);
+    this->close();
+    r->show();
 }
 
