@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/new/qss">
+        <file>qss/Devsion.qss</file>
+    </qresource>
+</RCC>
