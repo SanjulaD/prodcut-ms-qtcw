@@ -49,10 +49,22 @@ Login::~Login()
 
 void Login::on_loginButton_clicked()
 {
+    QSqlQuery query;
+    QString roleName;
+    QMessageBox msgBox;
+
     QString username, password;
 
-    username = ui -> userLineEdit -> text();
-    password = ui -> passwordLineEdit -> text();
+    username = ui -> userLineEdit -> text().trimmed();;
+    password = ui -> passwordLineEdit -> text().trimmed();
+
+    if (username.isEmpty()) {
+        msgBox.warning(this, "Warning", "Username field cannot be empty");
+        return;
+     } else if (password.isEmpty()) {
+        msgBox.warning(this, "Warning", "Password field cannot be empty!");
+        return;
+     }
 
     if (!my_db.isOpen()) {
         qDebug() << "Error: connection with database fail";
@@ -60,8 +72,6 @@ void Login::on_loginButton_clicked()
     } else {
         qDebug() << "Connected login";
     }
-
-    QSqlQuery query;
 
     query.prepare(
        "SELECT * FROM "
@@ -80,19 +90,26 @@ void Login::on_loginButton_clicked()
                 count++;
             }
             if (count == 1) {
-                ui -> label -> setText("username and password is correct");
+                if(query.first()) {
+                    roleName = query.value(8).toString();
+                    if (roleName == "admin") {
+                        msgBox.information(this, "Success", "admin success");
+                    }
+                    if (roleName == "user") {
+                        msgBox.information(this, "Success", "user success");
+                    }
+                }
             }
             if (count > 1) {
-                ui -> label -> setText("Duplicate username and password");
+                msgBox.warning(this, "Warning", "Duplicate username and password");
             }
             if (count < 1) {
-                ui -> label -> setText("username and password not valid");
+                msgBox.warning(this, "Warning", "username and password not valid");
             }
         } else {
             qDebug() << query.lastError();
         }
     } else {
-        ui->label->setText("Not working query");
         qDebug() << query.lastError();
     }
 }
