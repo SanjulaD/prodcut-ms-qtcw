@@ -34,7 +34,9 @@ CREATE TABLE IF NOT EXISTS "users" (
 DELETE FROM "users";
 /*!40000 ALTER TABLE "users" DISABLE KEYS */;
 INSERT INTO "users" ("id", "username", "password", "firstname", "lastname", "phonenumber", "email", "reg_date", "role") VALUES
-	('1', 'sanjula', 'sanjula', 'sanjula', 'dealwis', '0775210469', 'sanjula@example.com', '2021-11-13 23:01:05', 'admin');
+	('1', 'sanjula', 'sanjula', 'sanjula', 'dealwis', '0775210469', 'sanjula@example.com', '2021-11-13 23:01:05', 'admin'),
+	('2', 'user', 'user', 'user', 'silva', '0771234566', 'useer@gmaiol.com', '2021-11-14 10:08:49', 'user'),
+	('e4513458-7074-453c-9b51-a3ecd06b1631', 'Dilshan Perera', 'dilshan', 'Dilshan', 'Perera', '0771234566', 'dilshan@gmail.com', '14.11.2021 13:16:24', 'user');
 /*!40000 ALTER TABLE "users" ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

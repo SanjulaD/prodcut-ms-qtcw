@@ -1,5 +1,6 @@
 #include "login.h"
 #include "ui_login.h"
+#include "register.h"
 #include <QDir>
 #include <QDesktopWidget>
 #include <QTextStream>
@@ -23,20 +24,13 @@ Login::Login(QWidget *parent)
     ui -> userLineEdit -> setPlaceholderText("username");
     ui -> passwordLineEdit -> setPlaceholderText("password");
 
-    my_db = QSqlDatabase::addDatabase("QSQLITE");
-    QString dbPath = QDir::currentPath();
-    dbPath =  dbPath + QString("/database.db");
-    qDebug() << dbPath;
-    my_db.setDatabaseName(dbPath);
-    my_db.open();
-
-    if (!my_db.open())
+    if (!connOpen())
     {
         QTextStream(stdout) << "Connect Failed!";
     }
     else
     {
-        QTextStream(stdout) << "Connect OK!";
+        QTextStream(stdout) << "Login Connect OK!";
     }
 
 }
@@ -49,7 +43,6 @@ Login::~Login()
 
 void Login::on_loginButton_clicked()
 {
-    QSqlQuery query;
     QString roleName;
     QMessageBox msgBox;
 
@@ -66,12 +59,15 @@ void Login::on_loginButton_clicked()
         return;
      }
 
-    if (!my_db.isOpen()) {
-        qDebug() << "Error: connection with database fail";
+    if (!connOpen()) {
+        QTextStream(stdout) << "Failed to open the database!";
         return;
     } else {
-        qDebug() << "Connected login";
+        QTextStream(stdout) << "Connect Database Success!";
     }
+
+    connOpen();
+    QSqlQuery query;
 
     query.prepare(
        "SELECT * FROM "
@@ -84,7 +80,6 @@ void Login::on_loginButton_clicked()
     query.bindValue(":password", password);
 
     if (query.exec()) {
-        if(query.isActive()){
             int count = 0;
             while (query.next()) {
                 count++;
@@ -99,6 +94,7 @@ void Login::on_loginButton_clicked()
                         msgBox.information(this, "Success", "user success");
                     }
                 }
+                connClose();
             }
             if (count > 1) {
                 msgBox.warning(this, "Warning", "Duplicate username and password");
@@ -106,11 +102,16 @@ void Login::on_loginButton_clicked()
             if (count < 1) {
                 msgBox.warning(this, "Warning", "username and password not valid");
             }
-        } else {
-            qDebug() << query.lastError();
-        }
     } else {
         qDebug() << query.lastError();
     }
+}
+
+void Login::on_register_page_clicked()
+{
+    Register *r = new Register(this);
+    r->setModal(true);
+    this->close();
+    r->show();
 }
 
