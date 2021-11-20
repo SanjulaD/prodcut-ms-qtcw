@@ -1,6 +1,7 @@
 #include "login.h"
 #include "ui_login.h"
 #include "register.h"
+#include "usermenu.h"
 #include <QDir>
 #include <QDesktopWidget>
 #include <QTextStream>
@@ -88,10 +89,13 @@ void Login::on_loginButton_clicked()
                 if(query.first()) {
                     roleName = query.value(8).toString();
                     if (roleName == "admin") {
-                        msgBox.information(this, "Success", "admin success");
+                        msgBox.information(this, "Success", "Admin Login success");
                     }
                     if (roleName == "user") {
-                        msgBox.information(this, "Success", "user success");
+                        msgBox.information(this, "Success", "Login success");
+                        UserMenu *r = new UserMenu(this);
+                        this->close();
+                        r->show();
                     }
                 }
                 connClose();
