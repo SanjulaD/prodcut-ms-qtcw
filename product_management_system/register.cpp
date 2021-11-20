@@ -15,6 +15,7 @@ Register::Register(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    window()->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, window()->size(), qApp->desktop()->availableGeometry()));
     this->setFixedSize(this->maximumSize());
     setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
 

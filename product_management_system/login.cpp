@@ -44,7 +44,7 @@ Login::~Login()
 
 void Login::on_loginButton_clicked()
 {
-    QString roleName;
+    QString roleName, loggedInName, firstName, lastName;
     QMessageBox msgBox;
 
     QString username, password;
@@ -88,11 +88,15 @@ void Login::on_loginButton_clicked()
             if (count == 1) {
                 if(query.first()) {
                     roleName = query.value(8).toString();
+                    loggedInName = query.value(1).toString();
+                    firstName = query.value(3).toString();
+                    lastName = query.value(4).toString();
+
                     if (roleName == "admin") {
-                        msgBox.information(this, "Success", "Admin Login success");
+                        msgBox.information(this, "Success", firstName + " " + lastName + " Admin Login success");
                     }
                     if (roleName == "user") {
-                        msgBox.information(this, "Success", "Login success");
+                        msgBox.information(this, "Success", firstName + " " + lastName + " Login success");
                         UserMenu *r = new UserMenu(this);
                         this->close();
                         r->show();
