@@ -129,7 +129,7 @@
     <string>Sale Price</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="p_nameEdit">
    <property name="geometry">
     <rect>
      <x>160</x>
@@ -148,7 +148,7 @@
     <cursorShape>ArrowCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="p_descEdit">
    <property name="geometry">
     <rect>
      <x>160</x>
@@ -167,7 +167,7 @@
     <cursorShape>ArrowCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="p_quantutySpinBox">
    <property name="geometry">
     <rect>
      <x>160</x>
@@ -189,7 +189,7 @@
     <string notr="true">color: white</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_3">
+  <widget class="QLineEdit" name="p_purchasePrice">
    <property name="geometry">
     <rect>
      <x>160</x>
@@ -208,7 +208,7 @@
     <cursorShape>ArrowCursor</cursorShape>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_4">
+  <widget class="QLineEdit" name="p_salesPrice">
    <property name="geometry">
     <rect>
      <x>160</x>
@@ -239,7 +239,7 @@
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="productAddButton">
     <property name="font">
      <font>
       <family>Poppins</family>

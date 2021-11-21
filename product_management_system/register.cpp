@@ -128,48 +128,48 @@ void Register::on_register_button_clicked()
     unique_Id = unique_Id.remove('{').remove('}');
 
     if(this->CheckInputs()){
-            if(conn.connOpen()){
+        if(conn.connOpen()){
 
-                QSqlQuery query;
+            QSqlQuery query;
 
-                query.prepare(
-                   "INSERT INTO "
-                   "users "
-                   "(id, username, password, firstname, lastname, phonenumber, email, reg_date, role) "
-                   "VALUES "
-                   "(:id, :username, :password, :firstname, :lastname, :phonenumber, :email, :reg_date, :role)"
-                );
+            query.prepare(
+               "INSERT INTO "
+               "users "
+               "(id, username, password, firstname, lastname, phonenumber, email, reg_date, role) "
+               "VALUES "
+               "(:id, :username, :password, :firstname, :lastname, :phonenumber, :email, :reg_date, :role)"
+            );
 
-                query.bindValue(":id", unique_Id);
-                query.bindValue(":username", ui->username_line->text().trimmed());
-                query.bindValue(":password", ui->password_line->text().trimmed());
-                query.bindValue(":firstname", ui->firstname_line->text().trimmed());
-                query.bindValue(":lastname", ui->lastname_line->text().trimmed());
-                query.bindValue(":phonenumber", ui->phonenumber_line->text().trimmed());
-                query.bindValue(":email", ui->email_line->text().trimmed());
-                query.bindValue(":reg_date", formattedTimeMsg);
-                query.bindValue(":role", userRole);
+            query.bindValue(":id", unique_Id);
+            query.bindValue(":username", ui->username_line->text().trimmed());
+            query.bindValue(":password", ui->password_line->text().trimmed());
+            query.bindValue(":firstname", ui->firstname_line->text().trimmed());
+            query.bindValue(":lastname", ui->lastname_line->text().trimmed());
+            query.bindValue(":phonenumber", ui->phonenumber_line->text().trimmed());
+            query.bindValue(":email", ui->email_line->text().trimmed());
+            query.bindValue(":reg_date", formattedTimeMsg);
+            query.bindValue(":role", userRole);
 
-                if(query.exec()){
-                    if(query.isActive()){
-                        this->Clear();
-                        msgBox.information(this, "Success", "Registered Successfully");
-                        qDebug() << "Database query OK.";
-                        this->close();
-                        l->show();
-                        return;
-                    }
-                } else {
-                    msgBox.warning(this, "Warning", "Error Occur");
-                    qDebug() << query.lastError();
+            if(query.exec()){
+                if(query.isActive()){
+                    this->Clear();
+                    msgBox.information(this, "Success", "Registered Successfully");
+                    qDebug() << "Database query OK.";
+                    this->close();
+                    l->show();
                     return;
                 }
             } else {
-                msgBox.warning(this, "Warning", "Database Connection Error");
-                qDebug() << "Database connection closed.";
+                msgBox.warning(this, "Warning", "Error Occur");
+                qDebug() << query.lastError();
                 return;
             }
+        } else {
+            msgBox.warning(this, "Warning", "Database Connection Error");
+            qDebug() << "Database connection closed.";
+            return;
         }
+    }
 }
 
 void Register::on_login_page_clicked()
