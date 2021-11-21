@@ -21,8 +21,20 @@ private slots:
 
     void on_actionAbout_QT_triggered();
 
+    void on_refreshButton_clicked();
+
+    void quitApp();
+
+    void remove_loggedIn_user();
+
+    void refresh_all_products_table();
+
+    void refresh_my_products_table();
+
 private:
     Ui::UserMenu *ui;
+
+    void closeEvent (QCloseEvent *event);
 };
 
 #endif // USERMENU_H
