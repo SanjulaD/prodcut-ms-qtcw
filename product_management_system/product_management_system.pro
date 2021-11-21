@@ -11,16 +11,19 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     login.cpp \
+    productaddscreen.cpp \
     register.cpp \
     usermenu.cpp
 
 HEADERS += \
     login.h \
+    productaddscreen.h \
     register.h \
     usermenu.h
 
 FORMS += \
     login.ui \
+    productaddscreen.ui \
     register.ui \
     usermenu.ui
 

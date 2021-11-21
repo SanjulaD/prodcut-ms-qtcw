@@ -1,6 +1,7 @@
 #include "usermenu.h"
 #include "ui_usermenu.h"
 #include "login.h"
+#include "productaddscreen.h"
 #include <QDesktopWidget>
 #include <QMessageBox>
 #include <QTextStream>
@@ -51,7 +52,6 @@ void UserMenu::on_actionAbout_QT_triggered()
 void UserMenu::on_refreshButton_clicked()
 {
     refresh_all_products_table();
-    refresh_my_products_table();
 }
 
 void UserMenu::closeEvent (QCloseEvent *event)
@@ -194,5 +194,13 @@ void UserMenu::refresh_my_products_table()
     }
 
     conn.connClose();
+}
+
+
+void UserMenu::on_actionAdd_New_Product_triggered()
+{
+    ProductAddScreen *p = new ProductAddScreen(this);
+    p->setModal(true);
+    p->show();
 }
 

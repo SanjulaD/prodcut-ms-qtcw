@@ -31,6 +31,8 @@ private slots:
 
     void refresh_my_products_table();
 
+    void on_actionAdd_New_Product_triggered();
+
 private:
     Ui::UserMenu *ui;
 
