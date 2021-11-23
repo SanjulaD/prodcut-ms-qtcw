@@ -33,6 +33,11 @@ CREATE TABLE IF NOT EXISTS "products" (
 -- Dumping data for table database.products: -1 rows
 DELETE FROM "products";
 /*!40000 ALTER TABLE "products" DISABLE KEYS */;
+INSERT INTO "products" ("p_id", "p_name", "p_description", "p_quantity", "p_purchase_price", "p_sales_price", "added_date", "user_id") VALUES
+	('1', 'Rice', 'rice description', '10', '1200', '1500', '2012-12-13', '2'),
+	('2', 'Bath', 'new description', '15', '1800', '2500', '2012-12-13', '2'),
+	('9393d3ef-882b-460c-a878-2e8e8ef6f243', 'sasa', 'asasa', '4', 'asdasd', 'asdasd', '21.11.2021 12:10:17', '2'),
+	('d59de13e-3f6e-4958-b83e-8d787b63611c', 'ddd', 'ddd', '3', 'ddd', 'ddd', '21.11.2021 12:12:41', '2');
 /*!40000 ALTER TABLE "products" ENABLE KEYS */;
 
 -- Dumping structure for table database.users

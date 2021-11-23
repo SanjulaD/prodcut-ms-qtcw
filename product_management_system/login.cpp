@@ -44,7 +44,7 @@ Login::~Login()
 
 void Login::on_loginButton_clicked()
 {
-    QString roleName, loggedInName, firstName, lastName;
+    QString roleName, loggedInid, firstName, lastName;
     QMessageBox msgBox;
 
     QString username, password;
@@ -88,7 +88,7 @@ void Login::on_loginButton_clicked()
             if (count == 1) {
                 if(query.first()) {
                     roleName = query.value(8).toString();
-                    loggedInName = query.value(1).toString();
+                    loggedInid = query.value(0).toString();
                     firstName = query.value(3).toString();
                     lastName = query.value(4).toString();
 
@@ -97,6 +97,7 @@ void Login::on_loginButton_clicked()
                     }
                     if (roleName == "user") {
                         msgBox.information(this, "Success", firstName + " " + lastName + " Login success");
+                        get_loggefIn_user(loggedInid);
                         UserMenu *r = new UserMenu(this);
                         this->close();
                         r->show();
@@ -122,4 +123,30 @@ void Login::on_register_page_clicked()
     this->close();
     r->show();
 }
+
+void Login::get_loggefIn_user(const QString user_id)
+{
+    QMessageBox msgBox;
+
+    QString loginValue = "true";
+    connOpen();
+    QSqlQuery query;
+
+    query.prepare(
+       "UPDATE "
+       "users "
+       "SET is_logged = :is_logged_value "
+       "WHERE id = :id "
+    );
+
+    query.bindValue(":is_logged_value", loginValue);
+    query.bindValue(":id", user_id);
+
+    if (query.exec()) {
+        qDebug() << "Got details";
+    } else {
+        qDebug() << query.lastError();
+    }
+}
+
 

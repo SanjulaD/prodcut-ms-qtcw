@@ -34,13 +34,13 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="my_products">
      <attribute name="title">
       <string>My Products</string>
      </attribute>
-     <widget class="QTableWidget" name="my_products_widget">
+     <widget class="QTableView" name="my_products_table">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -49,118 +49,13 @@
         <height>281</height>
        </rect>
       </property>
-      <column>
-       <property name="text">
-        <string>ID</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Poppins</family>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Product Name</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Poppins</family>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Product Desc</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Poppins</family>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Product QTY</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Poppins</family>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Purchase Price</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Poppins</family>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Sale Price</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Poppins</family>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Added Date</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Poppins</family>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </column>
      </widget>
     </widget>
     <widget class="QWidget" name="all_products">
      <attribute name="title">
       <string>All Products</string>
      </attribute>
-     <widget class="QTableWidget" name="all_products_widget">
+     <widget class="QTableView" name="all_products_table">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -169,96 +64,31 @@
         <height>281</height>
        </rect>
       </property>
-      <column>
-       <property name="text">
-        <string>ID</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Poppins</family>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Product Name</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Poppins</family>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Product Desc</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Poppins</family>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Product QTY</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Poppins</family>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Price</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Poppins</family>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Added Date</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Poppins</family>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="textAlignment">
-        <set>AlignCenter</set>
-       </property>
-      </column>
+      <property name="font">
+       <font>
+        <family>Poppins</family>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color:white;</string>
+      </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderCascadingSectionResizes">
+       <bool>true</bool>
+      </attribute>
      </widget>
     </widget>
    </widget>

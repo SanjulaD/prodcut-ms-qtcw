@@ -51,6 +51,8 @@ private slots:
 
     void on_register_page_clicked();
 
+    void get_loggefIn_user(const QString user_id);
+
 private:
     Ui::Login *ui;
 };
