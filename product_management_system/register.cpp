@@ -7,7 +7,6 @@
 #include <QMessageBox>
 #include <QRegExp>
 #include <QDateTime>
-#include <QUUid>
 
 Register::Register(QWidget *parent) :
     QDialog(parent),
@@ -124,8 +123,7 @@ void Register::on_register_button_clicked()
     QString formattedTime = date.toString("dd.MM.yyyy hh:mm:ss");
     QByteArray formattedTimeMsg = formattedTime.toLocal8Bit();
 
-    QString unique_Id = QUuid::createUuid().toString();
-    unique_Id = unique_Id.remove('{').remove('}');
+    quint32 unique_Id = QRandomGenerator::global()->generate();
 
     if(this->CheckInputs()){
         if(conn.connOpen()){
