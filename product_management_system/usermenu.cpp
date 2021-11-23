@@ -45,13 +45,14 @@ void UserMenu::on_actionExit_triggered()
 
 void UserMenu::on_actionAbout_QT_triggered()
 {
-    refresh_all_products_table();
+
 }
 
 
 void UserMenu::on_refreshButton_clicked()
 {
     refresh_all_products_table();
+    refresh_my_products_table();
 }
 
 void UserMenu::closeEvent (QCloseEvent *event)
@@ -150,46 +151,41 @@ void UserMenu::refresh_all_products_table()
 void UserMenu::refresh_my_products_table()
 {
     Login conn;
-    conn.connOpen();
-
-    QString loggeddValue = "true";
-
     QSqlQueryModel * queryModel = new QSqlQueryModel();
+    conn.connOpen();
 
     QSqlQuery query;
 
-    query.prepare(
-       "SELECT * FROM "
-       "products p "
-       "INNER JOIN "
-       "users e"
-       "ON"
-       "p.user_id = u.id "
-    );
+    query.exec("SELECT id FROM users WHERE is_logged = 'true'");
+    if (query.next()) {
+        int userId = query.value(0).toInt();
+        query.prepare(
+           "SELECT p_id, p_name, p_description, p_quantity,p_purchase_price, p_sales_price, added_date FROM products WHERE user_id = :user_id ORDER BY added_date"
+        );
+        query.bindValue(":user_id", userId);
 
-     query.bindValue(":logValue", loggeddValue);
+        if(query.exec()){
+            if(query.isActive()){
+                qDebug() << "---------------- My LoadProducts OK ---------------------";
+                queryModel->setQuery(query);
 
-    if (query.exec()){
-        if(query.isActive()){
-            qDebug() << "LoadProducts OK";
-            queryModel->setQuery(query);
+                queryModel->setHeaderData(0, Qt::Horizontal, "ID");
+                queryModel->setHeaderData(1, Qt::Horizontal, "Product Name");
+                queryModel->setHeaderData(2, Qt::Horizontal, "Description");
+                queryModel->setHeaderData(3, Qt::Horizontal, "Quantity");
+                queryModel->setHeaderData(5, Qt::Horizontal, "Purhcase Price");
+                queryModel->setHeaderData(6, Qt::Horizontal, "Sale Price");
+                queryModel->setHeaderData(7, Qt::Horizontal, "Add Date");
 
-            queryModel->setHeaderData(0, Qt::Horizontal, "ID");
-            queryModel->setHeaderData(1, Qt::Horizontal, "Product Name");
-            queryModel->setHeaderData(2, Qt::Horizontal, "Description");
-            queryModel->setHeaderData(3, Qt::Horizontal, "Quantity");
-            queryModel->setHeaderData(4, Qt::Horizontal, "Sale Price");
-            queryModel->setHeaderData(5, Qt::Horizontal, "Add Date");
-
-            ui->my_products_table->setModel(queryModel);
+                ui->my_products_table->setModel(queryModel);
+                return;
+            }
         } else {
-            QMessageBox::critical(this, "ERROR", "Cannot run the query!");
-            qDebug() << query.lastError();
+            qDebug() << "--------------- My productsError ************* " << query.lastError();
             return;
         }
     } else {
-        QMessageBox::warning(this, "Warning", "An error occurred while receiving information!");
-        qDebug() << query.lastError();
+        qDebug() << "Database connection closed.";
         return;
     }
 
