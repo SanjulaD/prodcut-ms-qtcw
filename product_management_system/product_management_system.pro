@@ -13,19 +13,22 @@ SOURCES += \
     login.cpp \
     productaddscreen.cpp \
     register.cpp \
-    usermenu.cpp
+    usermenu.cpp \
+    userproducts.cpp
 
 HEADERS += \
     login.h \
     productaddscreen.h \
     register.h \
-    usermenu.h
+    usermenu.h \
+    userproducts.h
 
 FORMS += \
     login.ui \
     productaddscreen.ui \
     register.ui \
-    usermenu.ui
+    usermenu.ui \
+    userproducts.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

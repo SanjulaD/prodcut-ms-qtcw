@@ -2,6 +2,7 @@
 #include "ui_usermenu.h"
 #include "login.h"
 #include "productaddscreen.h"
+#include "userproducts.h"
 #include <QDesktopWidget>
 #include <QMessageBox>
 #include <QTextStream>
@@ -198,5 +199,13 @@ void UserMenu::on_actionAdd_New_Product_triggered()
     ProductAddScreen *p = new ProductAddScreen(this);
     p->setModal(true);
     p->show();
+}
+
+
+void UserMenu::on_actionSearch_Products_triggered()
+{
+    UserProducts *u = new UserProducts(this);
+    u->setModal(true);
+    u->show();
 }
 
