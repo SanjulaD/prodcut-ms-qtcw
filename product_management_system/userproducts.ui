@@ -179,7 +179,7 @@
   <widget class="QSplitter" name="splitter">
    <property name="geometry">
     <rect>
-     <x>390</x>
+     <x>360</x>
      <y>360</y>
      <width>311</width>
      <height>41</height>
@@ -199,19 +199,6 @@
     </property>
     <property name="text">
      <string>Load</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="saveBtn">
-    <property name="font">
-     <font>
-      <family>Poppins</family>
-     </font>
-    </property>
-    <property name="cursor">
-     <cursorShape>PointingHandCursor</cursorShape>
-    </property>
-    <property name="text">
-     <string>Save</string>
     </property>
    </widget>
    <widget class="QPushButton" name="updateBtn">
