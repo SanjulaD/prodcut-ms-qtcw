@@ -26,6 +26,8 @@ private slots:
 
     void on_updateBtn_clicked();
 
+    void on_deleteBtn_clicked();
+
 private:
     Ui::UserProducts *ui;
 };
