@@ -33,6 +33,8 @@ private slots:
 
     void on_actionAdd_New_Product_triggered();
 
+    void on_actionSearch_Products_triggered();
+
 private:
     Ui::UserMenu *ui;
 
