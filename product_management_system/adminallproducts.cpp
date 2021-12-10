@@ -92,3 +92,30 @@ void AdminAllProducts::on_pushButton_clicked()
     u->show();
 }
 
+
+void AdminAllProducts::on_deleteBtn_clicked()
+{
+    QMessageBox msgBox;
+
+    Login conn;
+    conn.connOpen();
+
+    QSqlQuery query;
+
+    query.prepare(
+       "DELETE from products WHERE p_id = :p_id"
+    );
+    query.bindValue(":p_id", clickedId);
+
+    if (query.exec()) {
+        msgBox.information(this, "Success", "Delete Successfully");
+        on_LoadTableBtn_clicked();
+    }
+    else {
+        qDebug() << "******************Error Update************.";
+        return;
+    }
+
+    conn.connClose();
+}
+

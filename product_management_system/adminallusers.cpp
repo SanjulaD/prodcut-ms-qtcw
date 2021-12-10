@@ -85,6 +85,27 @@ void AdminAllUsers::on_LoadTableBtn_clicked()
 
 void AdminAllUsers::on_deleteBtn_clicked()
 {
+    QMessageBox msgBox;
 
+    Login conn;
+    conn.connOpen();
+
+    QSqlQuery query;
+
+    query.prepare(
+       "DELETE from users WHERE id = :id"
+    );
+    query.bindValue(":id", clickedId);
+
+    if (query.exec()) {
+        msgBox.information(this, "Success", "Delete Successfully");
+        on_LoadTableBtn_clicked();
+    }
+    else {
+        qDebug() << "******************Error Update************.";
+        return;
+    }
+
+    conn.connClose();
 }
 

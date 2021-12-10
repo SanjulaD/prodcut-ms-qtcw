@@ -26,6 +26,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_deleteBtn_clicked();
+
 private:
     Ui::AdminAllProducts *ui;
 };
