@@ -9,6 +9,8 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    adminallproducts.cpp \
+    adminallusers.cpp \
     main.cpp \
     login.cpp \
     productaddscreen.cpp \
@@ -17,6 +19,8 @@ SOURCES += \
     userproducts.cpp
 
 HEADERS += \
+    adminallproducts.h \
+    adminallusers.h \
     login.h \
     productaddscreen.h \
     register.h \
@@ -24,6 +28,8 @@ HEADERS += \
     userproducts.h
 
 FORMS += \
+    adminallproducts.ui \
+    adminallusers.ui \
     login.ui \
     productaddscreen.ui \
     register.ui \
