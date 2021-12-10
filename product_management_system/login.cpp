@@ -2,6 +2,7 @@
 #include "ui_login.h"
 #include "register.h"
 #include "usermenu.h"
+#include "adminallproducts.h"
 #include <QDir>
 #include <QDesktopWidget>
 #include <QTextStream>
@@ -94,6 +95,9 @@ void Login::on_loginButton_clicked()
 
                     if (roleName == "admin") {
                         msgBox.information(this, "Success", firstName + " " + lastName + " Admin Login success");
+                        AdminAllProducts *a = new AdminAllProducts();
+                        this->close();
+                        a->show();
                     }
                     if (roleName == "user") {
                         msgBox.information(this, "Success", firstName + " " + lastName + " Login success");
