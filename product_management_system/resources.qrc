@@ -2,4 +2,7 @@
     <qresource prefix="/qss">
         <file>qss/Devsion.qss</file>
     </qresource>
+    <qresource prefix="/splash">
+        <file>images/splash_image.png</file>
+    </qresource>
 </RCC>
