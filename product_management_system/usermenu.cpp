@@ -212,6 +212,6 @@ void UserMenu::on_actionSearch_Products_triggered()
 
 void UserMenu::on_actionAbout_Application_triggered()
 {
-    QMessageBox::about(this, "About Application", "This is Inventory Management System Build to QT PRoject");
+    QMessageBox::about(this, "About Application", "This is Inventory Management System Build to QT Project");
 }
 
