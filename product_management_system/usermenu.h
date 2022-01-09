@@ -35,6 +35,8 @@ private slots:
 
     void on_actionSearch_Products_triggered();
 
+    void on_actionAbout_Application_triggered();
+
 private:
     Ui::UserMenu *ui;
 

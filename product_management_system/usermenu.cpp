@@ -46,7 +46,7 @@ void UserMenu::on_actionExit_triggered()
 
 void UserMenu::on_actionAbout_QT_triggered()
 {
-
+    QApplication::aboutQt();
 }
 
 
@@ -207,5 +207,11 @@ void UserMenu::on_actionSearch_Products_triggered()
     UserProducts *u = new UserProducts(this);
     u->setModal(true);
     u->show();
+}
+
+
+void UserMenu::on_actionAbout_Application_triggered()
+{
+    QMessageBox::about(this, "About Application", "This is Inventory Management System Build to QT Project");
 }
 
