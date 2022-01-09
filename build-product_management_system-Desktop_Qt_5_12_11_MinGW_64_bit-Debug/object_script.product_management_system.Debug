@@ -1,0 +1,16 @@
+debug/adminallproducts.o
+debug/adminallusers.o
+debug/main.o
+debug/login.o
+debug/productaddscreen.o
+debug/register.o
+debug/usermenu.o
+debug/userproducts.o
+debug/qrc_resources.o
+debug/moc_adminallproducts.o
+debug/moc_adminallusers.o
+debug/moc_login.o
+debug/moc_productaddscreen.o
+debug/moc_register.o
+debug/moc_usermenu.o
+debug/moc_userproducts.o

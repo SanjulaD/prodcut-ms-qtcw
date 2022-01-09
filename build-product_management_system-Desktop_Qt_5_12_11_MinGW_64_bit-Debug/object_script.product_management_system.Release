@@ -1,0 +1,16 @@
+release/adminallproducts.o
+release/adminallusers.o
+release/main.o
+release/login.o
+release/productaddscreen.o
+release/register.o
+release/usermenu.o
+release/userproducts.o
+release/qrc_resources.o
+release/moc_adminallproducts.o
+release/moc_adminallusers.o
+release/moc_login.o
+release/moc_productaddscreen.o
+release/moc_register.o
+release/moc_usermenu.o
+release/moc_userproducts.o
