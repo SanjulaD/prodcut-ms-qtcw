@@ -23,9 +23,6 @@
 
 -	Database – SQLite3
 -	IDE – QT Creator
--	Version Controlling – Git
--	Source Code review- GitHub
--	Project Management – Jira (Agile)
 -	Styles – QSS
 -	Compiler – MinGW73
 -	QT Version – 5.12
