@@ -26,4 +26,3 @@
 -	Styles – QSS
 -	Compiler – MinGW73
 -	QT Version – 5.12
-
